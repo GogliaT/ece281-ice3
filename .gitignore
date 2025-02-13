@@ -34,3 +34,7 @@
 
 # don't ignore digital files
 !*.dig
+
+# don't ignore image files
+!*.png
+!*.jpg

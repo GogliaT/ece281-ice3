@@ -47,8 +47,17 @@ begin
 	       assert (w_sum = x"0" and w_Cout = '0') report "bad with zeros" severity failure;
        -- Test all ones input
        w_addends <= x"FF"; w_Cin <= '1'; wait for 10 ns;
-	       assert (w_sum = x"E" and w_Cout = '1') report "bad with ones" severity failure;
+	       assert (w_sum = x"F" and w_Cout = '1') report "bad with ones" severity failure;
        -- TODO, a few other test cases
+       -- Tests Cin one
+       w_addends <= x"FF"; w_Cin <= '0'; wait for 10 ns;
+           assert (w_sum = x"E" and w_Cout = '1') report "bad with ones and Cin 0" severity failure;
+       w_addends <= x"8B"; w_Cin <= '1'; wait for 10 ns;
+           assert (w_sum = x"4" and w_Cout = '1') report "bad with 8 + 11 and Cin 1" severity failure;
+       w_addends <= x"19"; w_Cin <= '1'; wait for 10 ns;
+           assert (w_sum = x"B" and w_Cout = '0') report "bad with 1 + 9 and Cin 1" severity failure;
+       w_addends <= x"E7"; w_Cin <= '0'; wait for 10 ns;
+           assert (w_sum = x"5" and w_Cout = '1') report "bad with 14 + 7 and Cin 0" severity failure;
 	
 		wait; -- wait forever
 	end process;	
